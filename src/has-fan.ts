@@ -198,7 +198,7 @@ export function HasFan<TBase extends Constructor<ApplianceBase>>(Base: TBase) {
 
         // Configure the fan for a particular mode and speed
         async setFan(active: boolean, auto: boolean, percent: number): Promise<void> {
-            if (!active) {
+            if (!active && !auto) {
                 // Turn the fan off
                 this.log.info('SET fan off');
                 await this.device.stopProgram();
