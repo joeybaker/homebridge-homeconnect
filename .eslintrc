@@ -38,7 +38,7 @@
             }
         ],
         "semi": [
-            "warn"
+            "warn", "always"
         ],
         "comma-dangle": [
             "warn",
