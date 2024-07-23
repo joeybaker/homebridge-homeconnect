@@ -164,8 +164,8 @@ export function HasFan<TBase extends Constructor<ApplianceBase>>(Base: TBase) {
             this.device.on('Cooking.Common.Option.Hood.IntensiveLevel',
                            level => newLevel('Cooking.Common.Option.Hood.IntensiveLevel', level));
             this.device.on('BSH.Common.Root.ActiveProgram', programKey => {
-                if (!programKey) return;
-                const manual = programKey === FAN_PROGRAM_MANUAL;
+                // if no programKey, the fan is turning off and is defacto in manual
+                const manual = !programKey || programKey === FAN_PROGRAM_MANUAL;
                 this.log.info(`Fan ${manual ? 'manual' : 'automatic'} control`);
                 service.updateCharacteristic(this.Characteristic.TargetFanState, manual ? MANUAL : AUTO);
             });
