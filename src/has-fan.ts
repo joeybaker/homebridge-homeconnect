@@ -155,7 +155,6 @@ export function HasFan<TBase extends Constructor<ApplianceBase>>(Base: TBase) {
             // Update the status
             const newLevel = <Key extends OptionKey>(key: Key, value: OptionValue<Key>) => {
                 const percent = this.toFanSpeedPercent({ key, value });
-                if (!percent) return;
                 this.log.info(`Fan ${percent}%`);
                 service.updateCharacteristic(this.Characteristic.RotationSpeed, percent);
             };
